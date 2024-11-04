@@ -58,3 +58,13 @@
   color: var(--accent-color);
   background-color: var(--secondary-color);
 }
+
+@media (width <= 425px) {
+  .nav__link {
+    font-size: 0.875rem;
+  }
+
+  .nav__link span {
+    display: none;
+  }
+}

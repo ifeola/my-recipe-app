@@ -13,7 +13,7 @@ const Recipe = ({ recipe }) => {
     <li key={recipe.id}>
       <Link to={`/recipe/${recipe.id}`}>
         <div className={styles.recipe__img_bg}>
-          <img src={`src/assets/recipe${recipe.image}`} alt="" />
+          <img src={recipe.image} alt={recipe.name} />
           <div className={styles.duration}>
             <span>Prep Time: {recipe.prepTimeMinutes}mins</span>
             <span>Cook Time: {recipe.cookTimeMinutes}mins</span>

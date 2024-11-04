@@ -9,9 +9,9 @@ const CartItem = ({ recipe }) => {
     <article className={styles.cart__recipe}>
       <div className={styles.recipe__container}>
         <div className={styles.recipe__image}>
-          <img src={`src/assets/recipe${recipe.image}`} alt="" />
+          <img src={recipe.image} alt={recipe.name} />
         </div>
-        <div>
+        <div className={styles.recipe__description_bg}>
           <h3>{recipe.name}</h3>
           <div className={styles.recipe__description}>
             <div>
@@ -33,27 +33,36 @@ const CartItem = ({ recipe }) => {
               <p>{recipe.reviewCount} review counts</p>
             </div>
           </div>
-          <div className={styles.counter}>
+          <div className={styles.counter__bg}>
+            <div className={styles.counter}>
+              <button
+                className={styles.counter__decrement}
+                onClick={() => {
+                  dispatch({
+                    type: "DECREMENT",
+                    payload: recipe.id,
+                  });
+                }}>
+                <Minus />
+              </button>
+              <span>{getRecipe(recipe.id).quantity}</span>
+              <button
+                className={styles.counter__increment}
+                onClick={() => {
+                  dispatch({
+                    type: "INCREMENT",
+                    payload: recipe.id,
+                  });
+                }}>
+                <Plus />
+              </button>
+            </div>
             <button
-              className={styles.counter__decrement}
+              className={styles.remove__item_mobile}
               onClick={() => {
-                dispatch({
-                  type: "DECREMENT",
-                  payload: recipe.id,
-                });
+                dispatch({ type: "REMOVE_FROM_CART", payload: recipe.id });
               }}>
-              <Minus />
-            </button>
-            <span>{getRecipe(recipe.id).quantity}</span>
-            <button
-              className={styles.counter__increment}
-              onClick={() => {
-                dispatch({
-                  type: "INCREMENT",
-                  payload: recipe.id,
-                });
-              }}>
-              <Plus />
+              <PlusCircle />
             </button>
           </div>
           <div className={styles.duration}>
