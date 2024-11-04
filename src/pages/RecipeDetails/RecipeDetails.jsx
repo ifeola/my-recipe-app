@@ -28,7 +28,7 @@ const RecipeDetails = () => {
       {isLoading && (
         <>
           <div>
-            <img src={`../src/assets/recipe${recipe.image}`} alt="" />
+            <img src={recipe.image} alt="" />
           </div>
           <div>
             <h5>{recipe.name}</h5>
