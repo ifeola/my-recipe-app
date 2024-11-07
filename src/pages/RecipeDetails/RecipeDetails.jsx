@@ -1,27 +1,24 @@
 import { useParams } from "react-router-dom";
 import styles from "./recipedetails.module.css";
-import data from "../../../src/data.json";
 import { useEffect, useState } from "react";
 
 const RecipeDetails = () => {
-  const [recipes, setRecipes] = useState(data);
   const [recipe, setRecipe] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const recipeId = useParams();
 
   useEffect(() => {
     const getRecipe = (recipeId) => {
-      const recipe = recipes.find(
-        (item) => item.id === Number(recipeId.recipeId)
-      );
-      setRecipe(recipe);
-      setIsLoading(!isLoading);
+      fetch("https://dummyjson.com/recipes/1")
+        .then((res) => res.json())
+        .then((data) => {
+          setRecipe(data);
+          setIsLoading(!isLoading);
+        });
     };
 
     getRecipe(recipeId);
   }, [recipeId]);
-
-  console.log(recipe.ingredients);
 
   return (
     <section>
@@ -36,9 +33,6 @@ const RecipeDetails = () => {
               <p>{recipe.rating}</p>
               <p>{recipe.reviewCount}</p>
             </div>
-          </div>
-          <div>
-            <img src={`src/assets/recipe${recipe.image}`} alt="" />
           </div>
           <div>
             <ol>
